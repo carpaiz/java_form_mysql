@@ -1,0 +1,8 @@
+jdbc:mysql://localhost:3306/db_empresa
+
+
+usuario: usr_empresa
+contraseña: Empres@123
+
+
+
