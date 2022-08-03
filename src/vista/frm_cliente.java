@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
@@ -45,7 +46,7 @@ Cliente obj_cliente;
         txt_nit = new javax.swing.JTextField();
         lbl_nombres = new javax.swing.JLabel();
         txt_nombres = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_apellidos = new javax.swing.JLabel();
         txt_apellidos = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_direccion = new javax.swing.JTextField();
@@ -67,9 +68,27 @@ Cliente obj_cliente;
 
         lbl_nit.setText("Nit");
 
+        txt_nit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nitKeyReleased(evt);
+            }
+        });
+
         lbl_nombres.setText("Nombres");
 
-        jLabel4.setText("Apellidos");
+        txt_nombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombresKeyReleased(evt);
+            }
+        });
+
+        lbl_apellidos.setText("Apellidos");
+
+        txt_apellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_apellidosKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Direccion");
 
@@ -146,7 +165,7 @@ Cliente obj_cliente;
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(lbl_apellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(lbl_nombres, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addComponent(jLabel6)
                                             .addComponent(lbl_nit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,7 +207,7 @@ Cliente obj_cliente;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(lbl_apellidos))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -258,6 +277,51 @@ public void selec_datos(){
         tbl_cliente.setModel(obj_cliente.leer());
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
+// http://puntocomnoesunlenguaje.blogspot.com/2013/07/ejemplos-expresiones-regulares-java-split.html
+    private void txt_nitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nitKeyReleased
+        // TODO add your handling code here:
+        if (txt_nit.getText().matches("[0-9]{6,8}[0-9A-Z]{1}"))
+        {
+            lbl_nit.setText("Nit");
+            lbl_nit.setForeground(Color.black);
+         }
+        else
+        {
+            lbl_nit.setText("Error.");
+            lbl_nit.setForeground(Color.red);
+            
+        }
+    }//GEN-LAST:event_txt_nitKeyReleased
+
+    private void txt_nombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombresKeyReleased
+        // TODO add your handling code here:  \s = espacion en blanco
+        // un nombre o varios
+        if (txt_nombres.getText().matches("([A-Z]{1}[a-z]{2,12})([ ]{1}[A-Z]{1}[a-z]{2,12})*"))
+        {
+            lbl_nombres.setText("Nombres");
+            lbl_nombres.setForeground(Color.black);
+         }
+        else
+        {
+            lbl_nombres.setText("Error.");
+            lbl_nombres.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_txt_nombresKeyReleased
+
+    private void txt_apellidosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidosKeyReleased
+        // TODO add your handling code here: un apellido o dos
+          if (txt_apellidos.getText().matches("([A-Z]{1}[a-z]{2,12})([ ]{1}[A-Z]{1}[a-z]{2,12})?"))
+        {
+           
+            lbl_apellidos.setText("Apellidos");
+            lbl_apellidos.setForeground(Color.black);
+         }
+        else
+        {
+            lbl_apellidos.setText("Error.");
+            lbl_apellidos.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_txt_apellidosKeyReleased
 
     /**
      * @param args the command line arguments
@@ -300,11 +364,11 @@ public void selec_datos(){
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_apellidos;
     private javax.swing.JLabel lbl_id;
     private javax.swing.JLabel lbl_nit;
     private javax.swing.JLabel lbl_nombres;
